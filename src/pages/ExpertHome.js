@@ -2,7 +2,7 @@ import { Box, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import AuthNav from "../components/Navbar/AuthNav";
 import ImageBg from "../assets/images/trees-bg.jpeg";
 import CustomButton from "../components/CustomButton/customButton";
-import { myTrees, locations } from "../utils/data";
+import { myTrees, locations } from "../utils/appData";
 import { location } from "../assets/svgs/svg";
 
 const Home = () => {

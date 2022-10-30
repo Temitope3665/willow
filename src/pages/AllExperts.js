@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import CustomButton from "../components/CustomButton/customButton";
 import AuthNav from "../components/Navbar/AuthNav";
-import { allExperts } from "../utils/data";
+import { allExperts } from "../utils/appData";
 
 const AllExperts = () => {
   return (
