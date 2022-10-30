@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import AuthNav from "../components/Navbar/AuthNav";
 import NigMap from "../assets/images/nigeria-map.png";
-import { allExperts, allTrees, states } from "../utils/data";
+import { allExperts, allTrees, states } from "../utils/appData";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import CustomButton from "../components/CustomButton/customButton";
 import { useEffect, useState } from "react";
