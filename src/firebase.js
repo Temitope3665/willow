@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { initializeApp } from "firebase/app";
 import { toaster } from "evergreen-ui";
 import {
@@ -65,17 +66,15 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password, location, typeUser) => {
+const registerWithEmailAndPassword = async (name, email, password) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password, location, typeUser);
+    const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
-      location,
-      typeUser
     });
   } catch (error) {
     console.error(error);

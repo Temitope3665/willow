@@ -3,8 +3,8 @@ import CustomButton from "../components/CustomButton/customButton";
 import TextInput from "../components/TextInputs/TextInput";
 import brandLogo from "../assets/icons/brand-logo-dark.svg";
 import PasswordInput from "../components/TextInputs/PasswordInput";
-import { Select } from "@chakra-ui/react";
-import { countries, userType } from "../utils/data";
+// import { Select } from "@chakra-ui/react";
+// import { countries, userType } from "../utils/data";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, registerWithEmailAndPassword } from "../firebase";
 import { useEffect, useState } from "react";
@@ -13,22 +13,21 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [location, setLocation] = useState('');
   const [password, setPassword] = useState('');
-  const [typeUser, setTypeUser] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerWithEmailAndPassword(name, email, password, location, typeUser);
+    registerWithEmailAndPassword(name, email, password);
+    // navigate('/login');
   };
 
   useEffect(() => {
     if (loading) {
       <Spinner />;
     }
-    if (user) navigate("/login");
+    if (user) navigate("/home");
   }, [user, loading]);
   
   return (

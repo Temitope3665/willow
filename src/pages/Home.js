@@ -20,12 +20,36 @@ import { useNavigate } from "react-router-dom";
 import { toaster } from "evergreen-ui";
 import axios from "axios";
 import WeatherTemp from "../components/Tamplates/weatherTemp";
+import Nigeria from "../assets/images/nigeria.jpeg";
+import SouthAfrica from "../assets/images/south-africa.jpeg";
+import Mexico from "../assets/images/mexico.jpeg";
 
 const Home = () => {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [myTrees, setMyTrees] = useState([]);
   const [weatherData, setWeatherData] = useState({});
+
+  const locations = [
+    {
+      image: Nigeria,
+      country: "Nigeria",
+      figure: "12, 454",
+      route: "/plant-now"
+    },
+    {
+      image: SouthAfrica,
+      country: "South Africa",
+      figure: "5, 204",
+      route: "/plant-now"
+    },
+    {
+      image: Mexico,
+      country: "Mexico",
+      figure: "14, 719",
+      route: "/plant-now"
+    },
+  ];
 
   const navigate = useNavigate();
 
@@ -57,14 +81,6 @@ const Home = () => {
       );
     });
   }, []);
-
-  // const config = {
-  //   headers: {
-  //     "Access-Control-Allow-Origin": "http://localhost:3000",
-  //     "Content-Type": "application/json",
-  //   },
-  //   withCredentials: false,
-  // };
 
   useEffect(() => {
     axios
@@ -105,6 +121,7 @@ const Home = () => {
                 Locations
               </Text>
             </Flex>
+            {console.log(locations)}
             <SimpleGrid columns={3} gap="38">
               {locations.map((location) => (
                 <Box
@@ -205,7 +222,6 @@ const Home = () => {
             </SimpleGrid>
           </Box>
         </Box>
-        {/* Weather Condition */}
         <WeatherTemp weatherData={weatherData} />
       </Box>
     </Box>
