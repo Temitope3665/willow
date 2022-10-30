@@ -6,36 +6,17 @@ import Cloud from "../../assets/icons/cloud.png";
 import CloudIcon from "../../assets/icons/cloud-icon.png";
 
 const WeatherTemp = ({ weatherData }) => {
-//   const [weatherData, setWeatherData] = useState({});
+  // const [weatherData, setWeatherData] = useState({});
   const [loadingWeather, setLoadingWeather] = useState(false);
+  const [todaysWeather, setTodaysWeather] = useState('');
 
   setTimeout(() => {
     setLoadingWeather(true);
+    const w_ = weatherData?.narrative[0];
+    const wSplit = w_.split('.');
+    setTodaysWeather(wSplit[0])
   }, 5000);
 
-//   const config = {
-//     headers: {
-//       "Access-Control-Allow-Origin": "http://localhost:3000",
-//       "Content-Type": "application/json",
-//     },
-//     withCredentials: false,
-//   };
-//   console.log(weatherData);
-
-//   useEffect(() => {
-//     setLoadingWeather(true);
-//     axios
-//       .get(
-//         "https://api.weather.com/v3/wx/forecast/daily/3day?geocode=33.74,-84.39&format=json&units=m&language=en-US&apiKey=2b6ed19f3d474152aed19f3d4791527d",
-//         config
-//       )
-//       .then((res) => {
-//         setWeatherData(res?.data);
-//         console.log(res);
-//       })
-//       .catch((err) => console.log(err))
-//       .finally(() => setLoadingWeather(false));
-//   }, []);
   return (
     <Box
       w="27%"
@@ -51,7 +32,7 @@ const WeatherTemp = ({ weatherData }) => {
       ) : (
         <>
           <Text mt="20px" fontSize="24px" color="brand.dark">
-            Partly Cloudy
+            {todaysWeather}
           </Text>
           <Flex mt="30px" alignItems="center">
             <Box w="100%" ml="14px">
