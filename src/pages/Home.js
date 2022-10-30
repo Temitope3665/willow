@@ -61,19 +61,19 @@ const Home = () => {
     });
   }, []);
 
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "http://localhost:3000",
-      "Content-Type": "application/json",
-    },
-    withCredentials: false,
-  };
+  // const config = {
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "http://localhost:3000",
+  //     "Content-Type": "application/json",
+  //   },
+  //   withCredentials: false,
+  // };
 
   useEffect(() => {
     axios
       .get(
         "https://api.weather.com/v3/wx/forecast/daily/3day?geocode=33.74,-84.39&format=json&units=m&language=en-US&apiKey=2b6ed19f3d474152aed19f3d4791527d",
-        config
+        // config
       )
       .then((res) => {
         setWeatherData(res?.data);
