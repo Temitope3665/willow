@@ -46,7 +46,7 @@ const AuthNav = () => {
                   _hover={{ color: "brand.yellow" }}
                   color="brand.yellow"
                 >
-                  Your celo token: 0.00
+                  Earnings: $0.005
                 </Text>
             <Flex justifyContent="space-evenly" alignItems="center" onClick={logout}>
                 <Flex
