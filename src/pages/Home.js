@@ -61,13 +61,13 @@ const Home = () => {
     });
   }, []);
 
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "http://localhost:3000",
-      "Content-Type": "application/json",
-    },
-    withCredentials: false,
-  };
+  // const config = {
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "http://localhost:3000",
+  //     "Content-Type": "text/plain",
+  //   },
+  //   withCredentials: false,
+  // };
 
 const api = process.env.REACT_APP_IBM_API;
 
@@ -76,7 +76,7 @@ const api = process.env.REACT_APP_IBM_API;
     axios
       .get(
         api,
-        config
+        // config
       )
       .then((res) => {
         setWeatherData(res?.data);
