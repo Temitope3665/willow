@@ -22,7 +22,7 @@ import axios from "axios";
 import WeatherTemp from "../components/Tamplates/weatherTemp";
 
 const Home = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [myTrees, setMyTrees] = useState([]);
   const [weatherData, setWeatherData] = useState({});
