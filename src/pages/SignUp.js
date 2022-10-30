@@ -66,15 +66,15 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <FormLabel
+            {/* <FormLabel
               mt="20px"
               color="brand.dark"
               fontSize="14px"
               fontWeight="300"
             >
               Location
-            </FormLabel>
-            <Select
+            </FormLabel> */}
+            {/* <Select
               placeholder="Select location"
               focusBorderColor="#65D593"
               _focus={{ border: "0.1px solid #65D593" }}
@@ -87,8 +87,8 @@ const SignUp = () => {
               {countries.map((res) => (
                 <option value={res}>{res}</option>
               ))}
-            </Select>
-            <FormLabel
+            </Select> */}
+            {/* <FormLabel
               mt="20px"
               color="brand.dark"
               fontSize="14px"
@@ -109,7 +109,7 @@ const SignUp = () => {
               {userType.map((res) => (
                 <option value={res}>{res}</option>
               ))}
-            </Select>
+            </Select> */}
             <PasswordInput
               type="password"
               placeholder="Enter your password"
