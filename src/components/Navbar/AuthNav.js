@@ -46,7 +46,7 @@ const AuthNav = () => {
                   _hover={{ color: "brand.yellow" }}
                   color="brand.yellow"
                 >
-                  Earnings: $0.005
+                  Earnings: $0.000
                 </Text>
             <Flex justifyContent="space-evenly" alignItems="center" onClick={logout}>
                 <Flex

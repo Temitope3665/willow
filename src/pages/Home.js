@@ -69,10 +69,13 @@ const Home = () => {
     withCredentials: false,
   };
 
+const api = process.env.REACT_APP_IBM_API;
+
+
   useEffect(() => {
     axios
       .get(
-        "https://api.weather.com/v3/wx/forecast/daily/3day?geocode=33.74,-84.39&format=json&units=m&language=en-US&apiKey=2b6ed19f3d474152aed19f3d4791527d",
+        api,
         config
       )
       .then((res) => {
