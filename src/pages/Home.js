@@ -22,12 +22,15 @@ import WeatherTemp from "../components/Tamplates/weatherTemp";
 import Nigeria from "../assets/images/nigeria.jpeg";
 import SouthAfrica from "../assets/images/south-africa.jpeg";
 import Mexico from "../assets/images/mexico.jpeg";
+import Cookies from "js-cookie";
 
 const Home = () => {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [myTrees, setMyTrees] = useState([]);
   const [weatherData, setWeatherData] = useState({});
+  const navigate = useNavigate();
+  const userId = Cookies.get("userId");
 
   const locations = [
     {
@@ -50,8 +53,6 @@ const Home = () => {
     },
   ];
 
-  const navigate = useNavigate();
-
   const fetchUserName = async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -70,7 +71,10 @@ const Home = () => {
   }, [user, loading]);
 
   useEffect(() => {
-    const q = query(collection(db, "plantTrees"), orderBy("created", "desc"));
+    const q = query(collection(db, "plantTrees"), 
+    where("userId", "==", userId), 
+    orderBy("created", "desc")
+  );
     onSnapshot(q, (querySnapshot) => {
       setMyTrees(
         querySnapshot.docs.map((myTree) => ({
@@ -81,11 +85,12 @@ const Home = () => {
     });
   }, []);
 
+  const api = process.env.REACT_APP_IBM_API;
+
   useEffect(() => {
     axios
       .get(
-        "https://api.weather.com/v3/wx/forecast/daily/3day?geocode=33.74,-84.39&format=json&units=m&language=en-US&apiKey=2b6ed19f3d474152aed19f3d4791527d",
-        // config
+        api,
       )
       .then((res) => {
         setWeatherData(res?.data);
