@@ -20,14 +20,20 @@ import { useNavigate } from "react-router-dom";
 import { toaster } from "evergreen-ui";
 import axios from "axios";
 import WeatherTemp from "../components/Tamplates/weatherTemp";
+import Cookies from "js-cookie";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const Home = () => {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [myTrees, setMyTrees] = useState([]);
   const [weatherData, setWeatherData] = useState({});
+  const userId = Cookies.get("userId");
 
-  console.log(myTrees);
+  const q = query(collection(db, "plantTrees"), 
+    where("userId", "==", userId), 
+    orderBy("created", "desc")
+  );
 
   const navigate = useNavigate();
 
@@ -50,7 +56,6 @@ const Home = () => {
   }, [user, loading]);
 
   useEffect(() => {
-    const q = query(collection(db, "plantTrees"), orderBy("created", "desc"));
     onSnapshot(q, (querySnapshot) => {
       setMyTrees(
         querySnapshot.docs.map((myTree) => ({
@@ -61,13 +66,6 @@ const Home = () => {
     });
   }, []);
 
-  // const config = {
-  //   headers: {
-  //     "Access-Control-Allow-Origin": "http://localhost:3000",
-  //     "Content-Type": "text/plain",
-  //   },
-  //   withCredentials: false,
-  // };
 
 const api = process.env.REACT_APP_IBM_API;
 
@@ -76,7 +74,6 @@ const api = process.env.REACT_APP_IBM_API;
     axios
       .get(
         api,
-        // config
       )
       .then((res) => {
         setWeatherData(res?.data);
@@ -214,53 +211,6 @@ const api = process.env.REACT_APP_IBM_API;
         </Box>
         {/* Weather Condition */}
         <WeatherTemp weatherData={weatherData} />
-        {/* <Box
-          w="27%"
-          bg="#F2F2F2"
-          style={{ boxShadow: "rgba(0, 0, 0, 0.04) 0px 3px 5px" }}
-          borderRadius="8px"
-          p="20px"
-        >
-          <Image
-            src={Cloud}
-            alt="cloud"
-            w={120}
-            h={120}
-            mt="-50px"
-            ml="-30px"
-          />
-          <Text mt="20px" ml="20px" fontSize="24px" color="brand.dark">
-            Partly Cloudy
-          </Text>
-          <Flex mt="30px" alignItems="center">
-            <Box w="100%" ml="14px">
-              <Text fontSize="12px" color="brand.orange">
-                {weatherData?.dayOfWeek[0]}
-              </Text>
-              <Flex fontSize="15px" alignItems="center" mt="15px">
-                <Image src={CloudIcon} alt="cloud" w={30} h={30} />
-                <Text fontWeight="light" fontSize="14px" ml="10px">
-                  {weatherData?.narrative[0]}
-                </Text>
-              </Flex>
-            </Box>
-          </Flex>
-
-          <Flex mt="20px" alignItems="center">
-            <Box w="100%" ml="14px">
-              <Text fontSize="12px" color="brand.orange">
-                {weatherData?.dayOfWeek[1]}
-              </Text>
-              <Flex fontSize="15px" alignItems="center" mt="15px">
-                <Image src={CloudIcon} alt="cloud" w={30} h={30} />
-                <Text fontWeight="light" fontSize="14px" ml="10px">
-                  {weatherData?.narrative[1]}
-                </Text>
-              </Flex>
-            </Box>
-          </Flex>
-
-        </Box> */}
       </Box>
     </Box>
   );

@@ -12,6 +12,7 @@ import {
 } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "evergreen-ui";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,10 @@ const Login = () => {
     if (loading) {
       <Spinner />;
     }
-    if (user) navigate("/home");
+    if (user) {
+      navigate("/home")
+      Cookies.set("userId", user?.uid)
+    };
   }, [user, loading]);
 
   return (
