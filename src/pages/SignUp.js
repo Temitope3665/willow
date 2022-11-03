@@ -1,14 +1,13 @@
-import { Box, Flex, FormLabel, Image, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import CustomButton from "../components/CustomButton/customButton";
 import TextInput from "../components/TextInputs/TextInput";
 import brandLogo from "../assets/icons/brand-logo-dark.svg";
 import PasswordInput from "../components/TextInputs/PasswordInput";
-// import { Select } from "@chakra-ui/react";
-// import { countries, userType } from "../utils/data";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, registerWithEmailAndPassword } from "../firebase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -20,13 +19,13 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerWithEmailAndPassword(name, email, password);
-    // navigate('/login');
   };
 
   useEffect(() => {
     if (loading) {
       <Spinner />;
-    }
+    };
+    Cookies.set("userId", user?.uid)
     if (user) navigate("/home");
   }, [user, loading]);
   
@@ -65,50 +64,6 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {/* <FormLabel
-              mt="20px"
-              color="brand.dark"
-              fontSize="14px"
-              fontWeight="300"
-            >
-              Location
-            </FormLabel> */}
-            {/* <Select
-              placeholder="Select location"
-              focusBorderColor="#65D593"
-              _focus={{ border: "0.1px solid #65D593" }}
-              color="brand.dark"
-              h="48px"
-              fontSize="14px"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            >
-              {countries.map((res) => (
-                <option value={res}>{res}</option>
-              ))}
-            </Select> */}
-            {/* <FormLabel
-              mt="20px"
-              color="brand.dark"
-              fontSize="14px"
-              fontWeight="300"
-            >
-              Sign up As
-            </FormLabel>
-            <Select
-              placeholder="Select user type"
-              focusBorderColor="#65D593"
-              _focus={{ border: "0.1px solid #65D593" }}
-              color="brand.dark"
-              h="48px"
-              fontSize="14px"
-              value={typeUser}
-              onChange={(e) => setTypeUser(e.target.value)}
-            >
-              {userType.map((res) => (
-                <option value={res}>{res}</option>
-              ))}
-            </Select> */}
             <PasswordInput
               type="password"
               placeholder="Enter your password"
