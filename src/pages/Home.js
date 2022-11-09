@@ -18,11 +18,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toaster } from "evergreen-ui";
 import axios from "axios";
-import WeatherTemp from "../components/Tamplates/weatherTemp";
-import Nigeria from "../assets/images/nigeria.jpeg";
-import SouthAfrica from "../assets/images/south-africa.jpeg";
-import Mexico from "../assets/images/mexico.jpeg";
 import Cookies from "js-cookie";
+import { locations } from "../utils/appData";
+import WeatherTemp from "../components/Tamplates/weatherTemp";
 
 const Home = () => {
   const [user, loading] = useAuthState(auth);
@@ -31,27 +29,6 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState({});
   const navigate = useNavigate();
   const userId = Cookies.get("userId");
-
-  const locations = [
-    {
-      image: Nigeria,
-      country: "Nigeria",
-      figure: "12, 454",
-      route: "/plant-now"
-    },
-    {
-      image: SouthAfrica,
-      country: "South Africa",
-      figure: "5, 204",
-      route: "/plant-now"
-    },
-    {
-      image: Mexico,
-      country: "Mexico",
-      figure: "14, 719",
-      route: "/plant-now"
-    },
-  ];
 
   const fetchUserName = async () => {
     try {
@@ -125,7 +102,6 @@ const Home = () => {
                 Locations
               </Text>
             </Flex>
-            {console.log(locations)}
             <SimpleGrid columns={3} gap="38">
               {locations.map((location) => (
                 <Box

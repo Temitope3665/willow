@@ -227,41 +227,26 @@ export const countries = [
 
 export const locations = [
   {
+    id: 1,
     image: Nigeria,
     country: "Nigeria",
     figure: "12, 454",
-    route: "/plant-now"
+    route: `/plant-now/${1}`,
   },
   {
+    id: 2,
     image: SouthAfrica,
     country: "South Africa",
     figure: "5, 204",
-    route: "/plant-now"
+    route: `/plant-now/${2}`,
   },
   {
+    id: 3,
     image: Mexico,
     country: "Mexico",
     figure: "14, 719",
-    route: "/plant-now"
+    route: `/plant-now/${3}`,
   },
-  // {
-  //   image: Ghana,
-  //   country: "Ghana",
-  //   figure: "2, 303",
-  //   route: "/plant-now"
-  // },
-  // {
-  //   image: usa,
-  //   country: "USA",
-  //   figure: "24, 843",
-  //   route: "/plant-now"
-  // },
-  // {
-  //   image: Turkey,
-  //   country: "Turkey",
-  //   figure: "4,923",
-  //   route: "/plant-now"
-  // },
 ];
 
 export const myTrees = [
@@ -325,6 +310,22 @@ export const states = [
 export const allTrees = [
   "Mountain Fig", "Bush Fig", "Sycamore", "Gmelina Tree", "Jan Yaro", "Mahogany", "Bakin Faru", "Mango", "Moringa", "Cashew", "African Peach"
 ];
+
+export const SouthAfricaStates = [
+  "Eastern Cape",
+  "Free State",
+  "Gauteng",
+  "KwaZulu-Natal",
+  "Limpopo",
+  "Mpumalanga",
+  "Northern Cape",
+  "North West",
+  "Western Cape",
+];
+
+export const MexicoStates = [
+  'Aguascalientes', 'Baja California', 'Baja California Sur' , 'Campeche', 'Coahuila', 'Colima', 'Chiapas', 'Chihuahua', 'Durango', 'Mexico City', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Mexico', 'Michoacan', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Queretaro', 'Quintana Roo', 'San Luis Potosi', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas'
+]
 
 export const allExperts = [
   {
