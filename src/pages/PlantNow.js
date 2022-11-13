@@ -27,6 +27,7 @@ const PlantNow = () => {
   const [tree, setTree] = useState('');
   const [walletAddr, setWalletAddr] = useState("");
   const [treeAddr, setTreeAddr] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const userId = Cookies.get("userId");
 
@@ -34,6 +35,7 @@ const PlantNow = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let index = getRandomNumber(0, allExperts.length - 1);
     try {
       await addDoc(collection(db, 'plantTrees'), {
@@ -47,10 +49,12 @@ const PlantNow = () => {
         treeAddr,
         userId: userId,
         created: Timestamp.now(),
-      })
+      });
+      setLoading(false);
       navigate('/invite-pending')
     } catch (error) {
-      toaster.danger(error)
+      toaster.danger(error);
+      setLoading(false);
     }
   };
 
@@ -161,7 +165,6 @@ const PlantNow = () => {
           />
         </SimpleGrid>
         <Box w="100%" textAlign="center" mt="40px">
-          {/* <a href="/invite-pending"> */}
           <CustomButton
             bg="brand.orange"
             color="brand.white"
@@ -170,10 +173,10 @@ const PlantNow = () => {
             w="40%"
             onClick={handleSubmit}
             disabled={!region || !tree || !walletAddr}
+            isLoading={loading}
           >
             <Text fontWeight="medium">Proceed</Text>
           </CustomButton>
-          {/* </a> */}
         </Box>
       </Box>
     </Box>

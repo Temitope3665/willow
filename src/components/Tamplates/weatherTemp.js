@@ -9,9 +9,9 @@ const WeatherTemp = ({ weatherData }) => {
 //   const [weatherData, setWeatherData] = useState({});
   const [loadingWeather, setLoadingWeather] = useState(false);
 
-  // setTimeout(() => {
-  //   setLoadingWeather(true);
-  // }, 5000);
+  setTimeout(() => {
+    setLoadingWeather(true);
+  }, 5000);
 
   return (
     <Box
@@ -25,14 +25,14 @@ const WeatherTemp = ({ weatherData }) => {
       {weatherData !== {} ? 
       <>
         <Image src={Cloud} alt="cloud" w={120} h={120} mt="-50px" ml="-30px" />
-        {/* {!loadingWeather ? (
+        {!loadingWeather ? (
           <Spinner />
-        ) : ( */}
+        ) : (
           <>
             <Text mt="20px" fontSize="24px" color="brand.dark">
               No data available
             </Text>
-            {/* <Flex mt="30px" alignItems="center">
+            <Flex mt="30px" alignItems="center">
               <Box w="100%" ml="14px">
                 <Text fontSize="12px" color="brand.orange">
                   {weatherData?.dayOfWeek[0]}
@@ -86,9 +86,9 @@ const WeatherTemp = ({ weatherData }) => {
                   </Text>
                 </Flex>
               </Box>
-            </Flex> */}
+            </Flex>
           </>
-        {/* )} */}
+        )}
       </>
       : <Text>No available data</Text>
       }
