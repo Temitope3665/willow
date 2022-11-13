@@ -29,9 +29,6 @@ const WeatherTemp = ({ weatherData }) => {
           <Spinner />
         ) : (
           <>
-            <Text mt="20px" fontSize="24px" color="brand.dark">
-              No data available
-            </Text>
             <Flex mt="30px" alignItems="center">
               <Box w="100%" ml="14px">
                 <Text fontSize="12px" color="brand.orange">
